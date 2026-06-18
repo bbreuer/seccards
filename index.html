@@ -117,7 +117,10 @@
   }
   .deck-card:hover{ transform:translateY(-6px) scale(1.015); box-shadow:0 22px 44px rgba(0,0,0,.42); border-color:rgba(255,255,255,.28); }
   .deck-card:active{ transform:scale(.98); }
-  .deck-card .glow{ position:absolute; right:-34px; top:-34px; width:130px; height:130px; border-radius:50%; background:rgba(255,255,255,.22); filter:blur(10px); }
+  /* soft glossy glow via radial-gradient (NOT filter:blur — that renders as a hard square
+     inside a rounded overflow:hidden card on iOS Safari) */
+  .deck-card .glow{ position:absolute; right:-44px; top:-44px; width:170px; height:170px; border-radius:50%;
+    background:radial-gradient(circle, rgba(255,255,255,.34) 0%, rgba(255,255,255,.12) 45%, rgba(255,255,255,0) 70%); }
   .deck-emoji{ font-size:2.4rem; line-height:1; filter:drop-shadow(0 4px 8px rgba(0,0,0,.35)); position:relative; z-index:1; }
   .deck-num{ margin-top:10px; font-size:.72rem; font-weight:800; letter-spacing:1.4px; text-transform:uppercase; opacity:.85; position:relative; z-index:1; }
   .deck-name{ font-family:'Fredoka'; font-size:1.08rem; font-weight:700; line-height:1.15; margin-top:2px; position:relative; z-index:1; }
