@@ -1,0 +1,21 @@
+[
+ {"q": "What are the three major cloud SERVICE models?", "a": "IaaS (Infrastructure as a Service — raw compute/storage/network), PaaS (Platform as a Service — a platform to run your own apps), and SaaS (Software as a Service — a fully managed application)."},
+ {"q": "Give an example of IaaS, PaaS, and SaaS.", "a": "IaaS = AWS EC2 virtual machines. PaaS = a managed app/database platform (e.g., Azure App Service). SaaS = Microsoft 365 or Gmail."},
+ {"q": "What are the four cloud DEPLOYMENT models?", "a": "Public (shared, open to any customer), Private (dedicated to one organization), Community (shared among a specific group with common needs), and Hybrid (a blend of these)."},
+ {"q": "Explain the shared responsibility model.", "a": "Security duties are split between the cloud provider and customer. As you move SaaS→PaaS→IaaS, the customer takes on MORE responsibility. The customer is ALWAYS responsible for their data and access management."},
+ {"q": "Who secures what in IaaS vs. PaaS vs. SaaS?", "a": "IaaS: provider secures up to the hypervisor; customer secures the OS and up. PaaS: provider also secures the OS; customer secures apps/data. SaaS: provider secures almost everything; customer manages access controls and their data."},
+ {"q": "What is multitenancy?", "a": "Multiple customers (tenants) sharing the same physical cloud infrastructure while being logically isolated from each other."},
+ {"q": "Type 1 vs. Type 2 hypervisor?", "a": "Type 1 (bare-metal) runs directly on hardware (e.g., ESXi, Hyper-V) — more efficient/secure, used in data centers. Type 2 (hosted) runs on top of a host OS (e.g., VirtualBox) — for desktops/testing."},
+ {"q": "What is VM escape?", "a": "An attack where malicious code breaks out of a guest virtual machine to access the hypervisor or other VMs on the host — a critical virtualization risk."},
+ {"q": "What is VM sprawl?", "a": "The uncontrolled proliferation of virtual machines that go unmanaged, unpatched, and untracked — expanding the attack surface."},
+ {"q": "Containers vs. virtual machines?", "a": "VMs virtualize hardware and each runs a full guest OS (heavier, stronger isolation). Containers share the host OS kernel and package just the app and dependencies (lightweight, faster, weaker isolation)."},
+ {"q": "What is serverless computing (FaaS)?", "a": "A model where the cloud provider runs code on demand (functions) and fully manages the infrastructure — you only deploy code and pay per execution (e.g., AWS Lambda)."},
+ {"q": "What is a CASB?", "a": "Cloud Access Security Broker — a security policy enforcement point between users and cloud services that provides visibility, access control, DLP, and threat protection for cloud usage."},
+ {"q": "What is a cloud security group?", "a": "A virtual firewall for cloud instances that controls inbound/outbound traffic by rules — restricting which ports, protocols, and sources can reach a resource."},
+ {"q": "What are public vs. private subnets in cloud network design?", "a": "Public subnets have routes to the Internet (for web-facing resources); private subnets do not (for databases/backends) — segmentation that limits exposure."},
+ {"q": "What is Infrastructure as Code (IaC)?", "a": "Defining and provisioning infrastructure through machine-readable configuration files/code (e.g., Terraform), enabling consistent, repeatable, version-controlled deployments."},
+ {"q": "What is Software-Defined Networking (SDN)?", "a": "Separating the network control plane (decision-making) from the data plane (forwarding), allowing centralized, programmable, software-based network management."},
+ {"q": "What is secrets management in the cloud?", "a": "Securely storing and controlling access to sensitive credentials (API keys, passwords, certificates) in a dedicated vault rather than hard-coding them."},
+ {"q": "How is high availability achieved within a cloud region?", "a": "By deploying resources across multiple availability zones (isolated data centers) so an outage in one zone doesn't take the application down."},
+ {"q": "What is a key benefit of resource policies in the cloud?", "a": "They define and enforce who/what can access which cloud resources and how, providing fine-grained, auditable access control across the environment."}
+]

@@ -1,0 +1,21 @@
+[
+ {"q": "Name common wireless connectivity types.", "a": "Wi-Fi (802.11), Cellular (4G/5G), Bluetooth (short-range device pairing), NFC (very short-range, e.g., tap payments), and GPS (location)."},
+ {"q": "WPA2 vs. WPA3 — what's the key improvement?", "a": "WPA3 is the current standard. It replaces WPA2's PSK 4-way handshake with SAE (Simultaneous Authentication of Equals), protecting against offline password cracking and adding forward secrecy."},
+ {"q": "What is WPA personal (PSK) vs. WPA enterprise?", "a": "Personal/PSK uses one shared pre-shared key for everyone. Enterprise uses 802.1X with a RADIUS server so each user authenticates with their own credentials (much more secure and manageable)."},
+ {"q": "What is SAE?", "a": "Simultaneous Authentication of Equals — WPA3's secure handshake (a.k.a. Dragonfly) that resists offline dictionary attacks and provides forward secrecy, replacing WPA2's PSK handshake."},
+ {"q": "Why should WEP never be used?", "a": "Wired Equivalent Privacy uses weak RC4 encryption and a flawed IV scheme that's trivially cracked in minutes — it's completely insecure and obsolete."},
+ {"q": "What is EAP and name common variants?", "a": "Extensible Authentication Protocol — an authentication framework used with 802.1X. Variants include EAP-TLS (certificate-based, strongest), PEAP, EAP-TTLS, and EAP-FAST."},
+ {"q": "What is an evil twin attack?", "a": "An attacker sets up a rogue access point that impersonates a legitimate Wi-Fi network (same SSID) to trick users into connecting so traffic can be intercepted."},
+ {"q": "What is a rogue access point?", "a": "An unauthorized AP connected to a network (by an attacker or careless employee) that creates an insecure entry point bypassing network controls."},
+ {"q": "What is a deauthentication (deauth) attack?", "a": "Sending forged deauth/disassociation frames to knock clients off a Wi-Fi network — used for denial of service or to force reconnection to an evil twin."},
+ {"q": "Bluejacking vs. bluesnarfing?", "a": "Bluejacking sends unsolicited messages to a Bluetooth device (annoying but harmless). Bluesnarfing steals data from a Bluetooth device (a real breach)."},
+ {"q": "What is a site survey and a heat map?", "a": "A site survey is a physical walkthrough using tools to map existing wireless signals, coverage, and interference. A heat map visually shows signal strength across the area to guide AP placement."},
+ {"q": "Define the mobile deployment models BYOD, COPE, CYOD, and COBO.", "a": "BYOD = employees use personal devices. COPE = corporate-owned, personally enabled (some personal use allowed). CYOD = choose your own device from an approved list. COBO = corporate-owned, business only."},
+ {"q": "What is MDM/UEM?", "a": "Mobile Device Management / Unified Endpoint Management — software to centrally configure, secure, monitor, and control mobile (and other) devices, including pushing apps and remote wiping."},
+ {"q": "What is sideloading?", "a": "Installing apps from outside the official app store, bypassing its vetting — increasing the risk of installing malicious software."},
+ {"q": "What is jailbreaking/rooting?", "a": "Removing manufacturer restrictions to gain root/admin access on a mobile device. It bypasses the built-in security model, creating significant security risk."},
+ {"q": "What is containerization on mobile devices?", "a": "Separating corporate data/apps from personal data into an isolated, managed 'container' on the device so the company can secure/wipe work data without touching personal data."},
+ {"q": "What is remote wipe?", "a": "An MDM capability to remotely erase data from a lost or stolen device (or just the corporate container) to prevent data exposure."},
+ {"q": "What is geofencing?", "a": "Using GPS/location to define a virtual boundary and trigger policies (e.g., restrict access or disable features) based on whether a device is inside or outside an area."},
+ {"q": "Why is public/open Wi-Fi a security risk for mobile users?", "a": "Traffic can be intercepted via on-path/evil-twin attacks. Users should use a VPN and HTTPS, and avoid sensitive transactions on untrusted networks."}
+]

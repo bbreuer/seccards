@@ -1,0 +1,21 @@
+[
+ {"q": "What are the phases of the incident response cycle (Security+)?", "a": "Preparation → Detection → Analysis → Containment → Eradication → Recovery → Lessons Learned. Phases can move forward or backward as new info emerges."},
+ {"q": "What happens in the Preparation phase?", "a": "Building the capability to respond BEFORE an incident — policies, IR plan, tools, a trained team (CSIRT), communication plans, and exercises."},
+ {"q": "Containment vs. eradication vs. recovery?", "a": "Containment = stop the spread/limit damage (isolate systems). Eradication = remove the threat (malware, attacker access). Recovery = restore systems to normal operation and verify they're clean."},
+ {"q": "Why is the 'Lessons Learned' phase important?", "a": "After recovery, the team reviews what happened and how the response went to improve preparation, controls, and processes for the future."},
+ {"q": "Name common incident response exercise types.", "a": "Tabletop exercises (discussion-based walkthrough of a scenario), walk-throughs, and simulations — practiced so teams can respond effectively under real pressure."},
+ {"q": "What is a SIEM?", "a": "Security Information and Event Management — a system that aggregates logs/events from across the environment, correlates them, and provides dashboards, alerts, and analysis for detection and investigation."},
+ {"q": "What is SOAR?", "a": "Security Orchestration, Automation, and Response — tools that automate and coordinate incident response workflows (playbooks), reducing manual effort and reaction time."},
+ {"q": "What is the value of log aggregation/correlation?", "a": "Centralizing logs from many sources lets a SIEM correlate related events to reveal attacks that no single log would show on its own."},
+ {"q": "What is 'impossible travel' as an IoC?", "a": "Logins from two geographically distant locations within a timeframe too short to physically travel between them — indicating compromised credentials."},
+ {"q": "Name common indicators of compromise (IoCs) for incident detection.", "a": "Account lockouts, concurrent session usage, impossible travel, access to blocked content, unusual resource consumption, resource inaccessibility, out-of-cycle logging, and missing logs."},
+ {"q": "What is NetFlow (and sFlow)?", "a": "Protocols that collect summary network traffic flow data — which systems talked, ports/protocols, volume, and timing — useful for bandwidth analysis and incident investigation."},
+ {"q": "What is a packet analyzer/capture tool?", "a": "A tool (e.g., Wireshark, tcpdump) that captures and inspects raw network packets in detail — used to analyze traffic and investigate incidents."},
+ {"q": "What is syslog?", "a": "A standard protocol/format for devices and systems to send log messages to a central logging server (often feeding a SIEM)."},
+ {"q": "Why is metadata useful in incident response?", "a": "Metadata (timestamps, sender/recipient, file properties, geolocation) provides context about who did what, when, and where — often key evidence in investigations."},
+ {"q": "Name common incident mitigation/containment techniques.", "a": "Isolation, containment, and segmentation of affected systems; using allow/block lists; quarantining files/devices; firewall and MDM/DLP changes; content/URL filtering; and revoking/updating certificates."},
+ {"q": "What is root cause analysis?", "a": "Determining the underlying reason an incident occurred (not just the symptoms) so the organization can fix it and prevent recurrence."},
+ {"q": "What is the difference between an event and an incident?", "a": "An event is any observable occurrence in a system/network. An incident is an event (or series) that actually violates or threatens security policy and requires response."},
+ {"q": "What is quarantine in incident response?", "a": "Isolating a suspicious file or device (e.g., moving malware to a secure location, removing a host from the network) so it can't cause further harm while it's investigated."},
+ {"q": "Why does log retention matter for IR and compliance?", "a": "Logs must be kept long enough to support investigations and meet legal/regulatory requirements — too-short retention can lose crucial evidence; storage and policy must balance both."}
+]

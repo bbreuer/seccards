@@ -1,0 +1,18 @@
+[
+ {"q": "What is a legal hold?", "a": "A requirement to preserve and protect all information relevant to an active or anticipated legal case, preventing its alteration or destruction."},
+ {"q": "What is e-discovery?", "a": "Electronic discovery — the process of identifying, collecting, and producing electronically stored information as evidence in response to a legal request."},
+ {"q": "What is the order of volatility?", "a": "The sequence for collecting evidence from most to least volatile, so fragile data isn't lost: CPU registers/cache → RAM (memory) → network/temp data → disk → archived/backup media."},
+ {"q": "Why collect the most volatile data first?", "a": "Volatile data (like RAM) is lost when a system loses power or changes state, while disk data persists — so capture what disappears fastest before it's gone."},
+ {"q": "What is chain of custody?", "a": "Documentation that tracks who handled evidence, when, and why — from collection to court — proving it wasn't tampered with and keeping it admissible."},
+ {"q": "What is a write blocker?", "a": "A hardware or software tool that allows reading from a drive while preventing any writes, so the original evidence stays unaltered during acquisition."},
+ {"q": "What is a forensic (bit-by-bit) image?", "a": "An exact, sector-by-sector copy of a drive — including deleted files and slack space — so analysis is done on the copy while the original is preserved."},
+ {"q": "Why hash forensic images, and which hashes are common?", "a": "Hashing creates a unique fingerprint; comparing hashes proves the copy matches the original and wasn't altered. MD5 and SHA-1 are still commonly used in forensics (no adversary is forging hashes there)."},
+ {"q": "What is slack space?", "a": "Unused space within a disk cluster that may contain remnants of previously deleted files — often valuable forensic evidence captured by a full bit-by-bit image."},
+ {"q": "How does forensic acquisition differ for VMs and cloud?", "a": "For VMs, use snapshots to capture state. For cloud, copy data volumes and rely on provider tools/APIs — acquisition depends on where the data lives and provider cooperation."},
+ {"q": "What is provenance in digital forensics?", "a": "Documentation of the origin and complete history of evidence — where it came from and everything that happened to it — supporting authenticity."},
+ {"q": "What is the difference between a checksum and a forensic hash?", "a": "A checksum verifies data hasn't changed (error detection). A cryptographic hash also produces a unique fingerprint used to authenticate forensic artifacts, not just detect accidental changes."},
+ {"q": "What should a forensic report contain?", "a": "A summary of key findings; the process, tools, and procedures used; any limitations/assumptions; detailed findings with supporting evidence; and conclusions/recommendations."},
+ {"q": "What is a right-to-audit clause?", "a": "A contractual provision allowing an organization to audit a vendor/partner's security controls and practices — important for managing third-party and forensic readiness."},
+ {"q": "Why must forensic procedures be carefully documented and repeatable?", "a": "So evidence is admissible in court — another examiner following the same documented process should reach the same result, demonstrating reliability and integrity."},
+ {"q": "What is data preservation in forensics?", "a": "Protecting evidence from any change after collection using chain-of-custody processes, write blockers, forensic copies, and documented handling procedures."}
+]

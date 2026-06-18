@@ -1,0 +1,20 @@
+[
+ {"q": "What is ransomware?", "a": "Malware that encrypts (or threatens to publish) a victim's data and demands payment for the decryption key. Modern variants add 'double extortion' — stealing data and threatening to leak it."},
+ {"q": "What is a Trojan?", "a": "Malware disguised as legitimate/desirable software. It performs malicious actions when run while appearing benign. Does not self-replicate."},
+ {"q": "What is a RAT?", "a": "Remote Access Trojan — a Trojan that gives an attacker remote control of the infected system (often part of a botnet)."},
+ {"q": "What is a worm and how does it differ from a virus?", "a": "A worm self-replicates and spreads across networks on its own, with no user action and no host file needed. A virus needs a host file and a user to execute it to spread."},
+ {"q": "What is a botnet and C2?", "a": "A botnet is a network of compromised machines (bots/zombies) controlled by an attacker. C2 (command and control) is the infrastructure the attacker uses to issue commands to the bots."},
+ {"q": "What is spyware?", "a": "Malware that secretly gathers information about a user (browsing, keystrokes, credentials) and sends it to an attacker."},
+ {"q": "What is bloatware?", "a": "Unwanted pre-installed software that consumes resources and may introduce vulnerabilities. Not inherently malicious, but it increases attack surface and should be removed."},
+ {"q": "What is a keylogger?", "a": "Software or hardware that records keystrokes to capture passwords, messages, and other sensitive input."},
+ {"q": "What is a logic bomb?", "a": "Malicious code that lies dormant until a specific condition or time triggers it (e.g., a date, or a fired employee's account being deleted)."},
+ {"q": "What is a rootkit?", "a": "Malware that gains privileged (root/admin) access and hides its presence — often by modifying the OS kernel or boot process — making it very hard to detect and remove."},
+ {"q": "What is fileless malware?", "a": "Malware that runs in memory and abuses legitimate system tools (e.g., PowerShell, WMI) instead of writing files to disk, evading traditional signature-based antivirus."},
+ {"q": "What is a PUP?", "a": "A Potentially Unwanted Program — software bundled with downloads that the user didn't really want (adware, toolbars). Annoying and risky but not always overtly malicious."},
+ {"q": "What is a backdoor?", "a": "A hidden method of bypassing normal authentication to gain access to a system — often installed by malware (or left by developers) for later re-entry."},
+ {"q": "Name common indicators of compromise (IoCs) associated with malware.", "a": "C2 traffic patterns, known-bad IPs/domains/hostnames, unusual use of system utilities, lateral movement, unexpected file/dir creation, file encryption, and data exfiltration."},
+ {"q": "How are malware signatures used, and what is their limitation?", "a": "Signatures are unique patterns identifying known malware files; antivirus matches them to detect threats. Limitation: malware authors use polymorphism/obfuscation to change signatures and evade detection."},
+ {"q": "What is a polymorphic virus?", "a": "A virus that changes its own code/signature each time it replicates to evade signature-based detection, while keeping the same underlying function."},
+ {"q": "What are the general steps to mitigate/remove malware?", "a": "Identify and isolate the infected system, remove the malicious files (manually or with tools), and — for serious infections like rootkits — reinstall the OS or restore from a known-good backup to ensure full removal."},
+ {"q": "What was Stuxnet, and why is it notable?", "a": "A highly sophisticated nation-state worm that targeted industrial control systems (Iranian centrifuges). It's the classic example of malware causing physical/real-world damage."}
+]

@@ -1,0 +1,20 @@
+[
+ {"q": "What is social engineering?", "a": "Manipulating people into revealing information or taking actions that compromise security — exploiting human psychology rather than technical flaws."},
+ {"q": "Name the key psychological principles social engineers exploit.", "a": "Authority, Intimidation, Consensus/social proof, Scarcity, Urgency, Familiarity/liking, and Trust."},
+ {"q": "What is phishing?", "a": "Fraudulent messages (usually email) impersonating a trusted source to trick victims into revealing credentials, clicking malicious links, or opening attachments."},
+ {"q": "What is spear phishing vs. whaling?", "a": "Spear phishing targets a specific individual or group with tailored content. Whaling is spear phishing aimed at high-value targets like executives (the 'big fish')."},
+ {"q": "What are vishing and smishing?", "a": "Vishing = phishing over voice/phone calls. Smishing = phishing over SMS text messages."},
+ {"q": "What is Business Email Compromise (BEC)?", "a": "An attack where a scammer impersonates (or compromises) a trusted executive/vendor email account to trick employees into wiring money or sending sensitive data."},
+ {"q": "What is pretexting?", "a": "Inventing a believable scenario/backstory to justify a request and gain trust — usually paired with impersonation to make the social-engineering attack convincing."},
+ {"q": "What is a watering hole attack?", "a": "Compromising a website that the target group is known to visit, so victims get infected simply by visiting a trusted site."},
+ {"q": "What is typosquatting?", "a": "Registering domains with common misspellings of popular sites (e.g., gooogle.com) to catch users who mistype a URL and serve them malicious content."},
+ {"q": "What is brand impersonation?", "a": "Mimicking a trusted brand's logos, emails, and websites to make malicious communications look legitimate and trick users into trusting them."},
+ {"q": "What is the difference between misinformation and disinformation?", "a": "Misinformation = false info spread without intent to deceive. Disinformation = false info spread deliberately to deceive or manipulate."},
+ {"q": "What is pharming?", "a": "Redirecting users from a legitimate website to a fraudulent one — typically by poisoning DNS or modifying the hosts file — even when the correct URL is entered."},
+ {"q": "Online vs. offline password attacks?", "a": "Online attacks target a live system's login (limited by lockouts/rate limits). Offline attacks crack a stolen password hash store on the attacker's own hardware with no such limits."},
+ {"q": "What is a brute-force password attack?", "a": "Systematically trying every possible character combination until the correct password is found."},
+ {"q": "What is a dictionary attack?", "a": "Trying passwords from a precompiled list of likely/common words and passwords instead of every possible combination."},
+ {"q": "What is password spraying?", "a": "Trying a few common passwords against MANY accounts (instead of many passwords against one) to avoid triggering account lockouts."},
+ {"q": "What is a rainbow table and how do you defend against it?", "a": "A precomputed table of password hashes used to reverse hashes quickly. Defense: salting (adding random data to each password before hashing) makes precomputed tables useless."},
+ {"q": "Why are MD5 hashes and plaintext storage dangerous for passwords?", "a": "Plaintext and weak/fast hashes like MD5 are easy to crack or read outright. Strong, salted, slow hashing (e.g., bcrypt) should be used to protect stored passwords."}
+]
