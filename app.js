@@ -37,6 +37,8 @@
   function show(screenId) {
     document.querySelectorAll(".screen").forEach((s) => s.classList.remove("active"));
     $("#" + screenId).classList.add("active");
+    // lock scrolling only while practicing; deck list & results stay scrollable
+    document.body.classList.toggle("lock-scroll", screenId === "study");
     window.scrollTo(0, 0);
   }
 
