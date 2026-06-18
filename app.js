@@ -97,6 +97,7 @@
       flipped: false, onlyStarred: !!opts.onlyStarred,
       results: { again: 0, hard: 0, good: 0, easy: 0 },
       missed: [],
+      history: [],   // undo records so swipe-back can revert the last grade
     };
     document.body.style.background =
       `linear-gradient(135deg, ${shade(deck.color, -45)}, ${shade(deck.color, -15)} 60%, #1e1b4b)`;
@@ -138,8 +139,11 @@
     if (!s || !s.flipped) return;
     const i = s.queue[s.pos];
     const k = key(s.deck.id, i);
-    s.results[g]++;
     const xpGain = { again: 1, hard: 2, good: 4, easy: 5 }[g];
+    // remember enough to fully reverse this grade if the user swipes back
+    const undo = { pos: s.pos, i, k, grade: g, xp: xpGain, wasMastered: !!state.mastered[k], insertedAt: null };
+
+    s.results[g]++;
     addXp(xpGain);
 
     if (g === "good" || g === "easy") {
@@ -152,8 +156,10 @@
         const insertAt = Math.min(s.pos + 4, s.queue.length);
         s.queue.splice(insertAt, 0, i);
         s.total = s.queue.length;
+        undo.insertedAt = insertAt;
       }
     }
+    s.history.push(undo);
     save();
 
     s.pos++;
@@ -161,11 +167,46 @@
     else { popCard(); renderCard(); }
   }
 
+  // go back to the previous card, reversing the last grade's effects
+  function prevCard() {
+    const s = session;
+    if (!s || !s.history.length) return;   // nothing before the first card
+    const u = s.history.pop();
+    if (u.insertedAt != null) {             // remove the duplicate "Again" re-queued
+      s.queue.splice(u.insertedAt, 1);
+      s.total = s.queue.length;
+    }
+    s.results[u.grade]--;
+    addXp(-u.xp);
+    if (u.wasMastered) state.mastered[u.k] = true; else delete state.mastered[u.k];
+    if (u.grade === "again" || u.grade === "hard") {
+      const m = s.missed.lastIndexOf(u.i);
+      if (m >= 0) s.missed.splice(m, 1);
+    }
+    save();
+    s.pos = u.pos;
+    popCardBack();
+    renderCard();
+  }
+
   function popCard() {
     const fc = $("#flashcard");
     fc.style.transition = "none";
     fc.style.opacity = "0";
     fc.style.transform = "translateX(40px) rotateY(0)";
+    requestAnimationFrame(() => {
+      fc.style.transition = "";
+      fc.style.opacity = "1";
+      fc.style.transform = "";
+    });
+  }
+
+  // slide-in from the left when stepping back to the previous card
+  function popCardBack() {
+    const fc = $("#flashcard");
+    fc.style.transition = "none";
+    fc.style.opacity = "0";
+    fc.style.transform = "translateX(-40px) rotateY(0)";
     requestAnimationFrame(() => {
       fc.style.transition = "";
       fc.style.opacity = "1";
@@ -246,7 +287,30 @@
 
   // ---------- events ----------
   $("#flip-btn").addEventListener("click", flip);
-  $("#flashcard").addEventListener("click", flip);
+  // tap to flip — but ignore the tap that ends a swipe gesture
+  let swiped = false;
+  $("#flashcard").addEventListener("click", () => { if (!swiped) flip(); });
+
+  // swipe RIGHT on the card to go back to the previous flashcard
+  (function () {
+    const stage = $("#flashcard");
+    let sx = 0, sy = 0, tracking = false;
+    stage.addEventListener("touchstart", (e) => {
+      if (e.touches.length !== 1) { tracking = false; return; }
+      sx = e.touches[0].clientX; sy = e.touches[0].clientY; tracking = true;
+    }, { passive: true });
+    stage.addEventListener("touchend", (e) => {
+      if (!tracking) return;
+      tracking = false;
+      const t = e.changedTouches[0];
+      const dx = t.clientX - sx, dy = t.clientY - sy;
+      if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy) * 1.4) {
+        swiped = true;
+        setTimeout(() => { swiped = false; }, 400);
+        if (dx > 0) prevCard();   // swipe right → previous card
+      }
+    }, { passive: true });
+  })();
   $("#star-toggle").addEventListener("click", (e) => { e.stopPropagation(); toggleStar(); });
   $("#star-filter-btn").addEventListener("click", () => {
     if (!session) return;
