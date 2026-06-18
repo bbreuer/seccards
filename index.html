@@ -2,8 +2,15 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>SecCards 🛡️ Security+ Flashcards</title>
+
+<!-- tint the iOS/Android status bar to match the app instead of white -->
+<meta name="theme-color" content="#241a52">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="SecCards">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -67,6 +74,9 @@
     min-height:100vh;
     overflow-x:hidden;
     transition:background .6s ease;
+    /* keep content clear of the notch/status bar when launched from the Home Screen */
+    padding-top:env(safe-area-inset-top);
+    padding-bottom:env(safe-area-inset-bottom);
   }
   h1,h2,h3,.font-display{ font-family:'Fredoka',sans-serif; }
 
