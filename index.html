@@ -203,6 +203,18 @@
   #confetti{ position:fixed; inset:0; pointer-events:none; z-index:60; }
   .deck-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:16px; margin:26px 0; }
   @media(max-width:430px){ .deck-grid{ grid-template-columns:repeat(2,1fr); gap:12px; } .grade{ font-size:.84rem; } }
+
+  /* ---------- mode switcher ---------- */
+  .mode-nav{ display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin:18px 0 2px; }
+  .mode-pill{ display:inline-flex; align-items:center; gap:7px; border:1px solid rgba(255,255,255,.14);
+    background:rgba(255,255,255,.06); color:#e9e9ff; border-radius:999px; padding:9px 16px; font-family:'Fredoka';
+    font-weight:600; font-size:.95rem; cursor:pointer; backdrop-filter:blur(8px); transition:.15s; }
+  .mode-pill:hover{ background:rgba(255,255,255,.13); }
+  .mode-pill.active{ background:linear-gradient(95deg,#6366f1,#a855f7); border-color:transparent; box-shadow:0 8px 20px rgba(99,102,241,.4); }
+
+  /* ---------- acronym drill card ---------- */
+  .ac-card{ background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); border-radius:24px; padding:24px; backdrop-filter:blur(10px); }
+  .ac-acronym{ font-family:'Fredoka'; font-weight:700; letter-spacing:.5px; color:#fff; line-height:1.05; }
 </style>
 </head>
 <body class="font-body">
@@ -247,6 +259,11 @@
         </div>
       </div>
     </header>
+
+    <nav class="mode-nav">
+      <button class="mode-pill active" data-mode="cards">🎴 Flashcards</button>
+      <button class="mode-pill" data-mode="acronyms">🔤 Acronyms</button>
+    </nav>
 
     <div class="deck-grid" id="deck-grid"></div>
 
@@ -323,10 +340,83 @@
     </div>
   </section>
 
+  <!-- ============ ACRONYMS HOME / DECK PICKER ============ -->
+  <section id="acronyms-home" class="screen pt-8">
+    <header class="pb-1 text-center">
+      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight bg-gradient-to-r from-indigo-300 via-fuchsia-300 to-amber-300 bg-clip-text text-transparent">🔤 Acronym Drill</h1>
+      <p class="mt-2 font-semibold text-indigo-200/90">Master a chapter at a time — then take on every acronym in one deck.</p>
+    </header>
+    <nav class="mode-nav">
+      <button class="mode-pill" data-mode="cards">🎴 Flashcards</button>
+      <button class="mode-pill active" data-mode="acronyms">🔤 Acronyms</button>
+    </nav>
+    <div class="deck-grid" id="acro-grid"></div>
+  </section>
+
+  <!-- ============ ACRONYMS RAPID-FIRE ============ -->
+  <section id="acronyms" class="screen pt-6">
+    <div class="flex items-center justify-between gap-2.5">
+      <button class="icon-btn" id="ac-back" title="Back">‹ Decks</button>
+      <div class="flex-1 text-center font-display text-lg font-bold truncate" id="ac-deck-title">Acronyms</div>
+      <div class="min-w-[58px] text-right text-sm font-extrabold text-amber-300" id="ac-acc-top">—</div>
+    </div>
+
+    <div class="mt-4 flex flex-wrap justify-center gap-2.5">
+      <div class="flex min-w-[78px] flex-col items-center rounded-2xl border border-white/12 bg-white/[.06] px-4 py-2.5 backdrop-blur">
+        <span id="ac-streak" class="font-display text-2xl font-extrabold text-orange-400">0</span>
+        <span class="text-[.68rem] uppercase tracking-wide text-indigo-200/80">🔥 streak</span>
+      </div>
+      <div class="flex min-w-[78px] flex-col items-center rounded-2xl border border-white/12 bg-white/[.06] px-4 py-2.5 backdrop-blur">
+        <span id="ac-known" class="font-display text-2xl font-extrabold text-brand-mint">0</span>
+        <span class="text-[.68rem] uppercase tracking-wide text-indigo-200/80">knew it</span>
+      </div>
+      <div class="flex min-w-[78px] flex-col items-center rounded-2xl border border-white/12 bg-white/[.06] px-4 py-2.5 backdrop-blur">
+        <span id="ac-seen" class="font-display text-2xl font-extrabold text-white">0</span>
+        <span class="text-[.68rem] uppercase tracking-wide text-indigo-200/80">seen</span>
+      </div>
+      <div class="flex min-w-[78px] flex-col items-center rounded-2xl border border-white/12 bg-white/[.06] px-4 py-2.5 backdrop-blur">
+        <span id="ac-acc" class="font-display text-2xl font-extrabold text-amber-300">—</span>
+        <span class="text-[.68rem] uppercase tracking-wide text-indigo-200/80">accuracy</span>
+      </div>
+    </div>
+
+    <div class="mt-4 flex items-center gap-3">
+      <div class="progress-bar"><div class="progress-fill" id="ac-progress"></div></div>
+      <div class="min-w-[58px] text-right text-sm font-extrabold text-indigo-100"><span id="ac-count">0 / 0</span></div>
+    </div>
+
+    <div class="ac-card mt-5 text-center">
+      <p class="text-[.72rem] font-bold uppercase tracking-[2px] text-indigo-200/80" id="ac-prompt">What does this stand for?</p>
+      <p class="ac-acronym mt-3" id="ac-acronym" style="font-size:clamp(2rem,9vw,3.2rem)">—</p>
+      <div id="ac-answer" class="hidden">
+        <p class="font-display text-xl font-bold text-brand-mint mt-1" id="ac-full"></p>
+        <p class="text-indigo-100/90 mt-2 text-[.95rem] leading-relaxed" id="ac-note"></p>
+      </div>
+      <div class="action-row flex gap-2.5 mt-5" id="ac-reveal-row">
+        <button class="btn btn-flip" id="ac-reveal">Reveal answer</button>
+      </div>
+      <div class="action-row grade-row hidden flex gap-2.5 mt-5" id="ac-grade-row">
+        <button class="btn grade hard" id="ac-miss">😬 Review again</button>
+        <button class="btn grade good" id="ac-know">✅ Knew it</button>
+      </div>
+    </div>
+
+    <div class="mt-4 flex justify-center gap-2.5">
+      <button class="icon-btn" id="ac-shuffle" title="Reshuffle">🔀 Shuffle</button>
+      <button class="icon-btn" id="ac-restart" title="Restart">↺ Restart</button>
+    </div>
+
+    <div class="keyhints mt-4 flex flex-wrap justify-center gap-3.5 text-[.78rem] font-bold text-indigo-200/80">
+      <span><kbd>Space</kbd> reveal</span><span><kbd>1</kbd> review</span><span><kbd>2</kbd> knew it</span>
+    </div>
+  </section>
+
   <canvas id="confetti"></canvas>
 </div>
 
 <script src="flashcards-data.js"></script>
+<script src="acronyms-data.js"></script>
 <script src="app.js"></script>
+<script src="extras.js"></script>
 </body>
 </html>
