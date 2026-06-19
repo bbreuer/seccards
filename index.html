@@ -167,9 +167,12 @@
     background:linear-gradient(90deg,#a855f7,#f0abfc,#fcd34d); background-size:200% 100%; }
 
   /* ---------- flashcard 3D ---------- */
-  .card-stage{ perspective:1700px; display:flex; justify-content:center; margin:20px 0; }
+  /* the gentle bob lives on the stage, NOT the card — a running transform
+     animation on .flashcard would override the .flipped rotateY and the
+     card would never visually flip */
+  .card-stage{ perspective:1700px; display:flex; justify-content:center; margin:20px 0; animation:floaty 7s ease-in-out infinite; }
   .flashcard{ position:relative; width:100%; max-width:580px; height:min(56vh,440px);
-    transform-style:preserve-3d; transition:transform .6s cubic-bezier(.4,.2,.2,1); cursor:pointer; animation:floaty 7s ease-in-out infinite; }
+    transform-style:preserve-3d; transition:transform .6s cubic-bezier(.4,.2,.2,1); cursor:pointer; }
   .flashcard.flipped{ transform:rotateY(180deg); }
   .card-face{ position:absolute; inset:0; backface-visibility:hidden; border-radius:28px; padding:28px;
     display:flex; flex-direction:column; color:#1e293b; box-shadow:0 24px 60px rgba(0,0,0,.45);
