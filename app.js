@@ -287,38 +287,10 @@
 
   // ---------- events ----------
   $("#flip-btn").addEventListener("click", flip);
-
-  // Touch handling: a tap flips, a right-swipe goes back. We act on touchend
-  // directly because iOS often swallows the synthesized click when touch
-  // listeners are attached — relying on click alone broke tap-to-flip.
-  let touchHandled = false;   // suppress the click that follows a handled touch
-  (function () {
-    const stage = $("#flashcard");
-    let sx = 0, sy = 0, tracking = false;
-    stage.addEventListener("touchstart", (e) => {
-      if (e.touches.length !== 1) { tracking = false; return; }
-      sx = e.touches[0].clientX; sy = e.touches[0].clientY; tracking = true;
-    }, { passive: true });
-    stage.addEventListener("touchend", (e) => {
-      if (!tracking) return;
-      tracking = false;
-      const t = e.changedTouches[0];
-      const dx = t.clientX - sx, dy = t.clientY - sy;
-      // ignore taps on the star button — it has its own handler
-      if (e.target.closest("#star-toggle")) return;
-      const isSwipe = Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy) * 1.4;
-      const isTap = Math.abs(dx) < 12 && Math.abs(dy) < 12;
-      if (isSwipe || isTap) {
-        touchHandled = true;
-        setTimeout(() => { touchHandled = false; }, 400);
-      }
-      if (isSwipe) { if (dx > 0) prevCard(); }   // swipe right → previous card
-      else if (isTap) flip();
-    }, { passive: true });
-  })();
-
-  // mouse/desktop tap to flip (skipped right after a handled touch)
-  $("#flashcard").addEventListener("click", () => { if (!touchHandled) flip(); });
+  // tap the card to flip
+  $("#flashcard").addEventListener("click", flip);
+  // go back to the previous card
+  $("#prev-card").addEventListener("click", prevCard);
   $("#star-toggle").addEventListener("click", (e) => { e.stopPropagation(); toggleStar(); });
   $("#star-filter-btn").addEventListener("click", () => {
     if (!session) return;
